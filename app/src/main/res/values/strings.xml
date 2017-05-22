@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Complaciente</string>
+    <string name="login_usr">Nombre de usuario</string>
+    <string name="login_pass">Contraseña</string>
+    <string name="registrar">Registrar</string>
+    <string name="entrar">Entrar</string>
 </resources>
