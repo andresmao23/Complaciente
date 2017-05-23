@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_lista_canciones"
+        android:title="Lista de canciones"
+        android:icon="@mipmap/ic_lista_cancionesdos"/>
+
+    <item android:id="@+id/nav_saludos"
+        android:title="Saludos"
+        android:icon="@mipmap/ic_saludos"/>
+
+    <item android:id="@+id/nav_promociones"
+        android:title="Promociones"
+        android:icon="@mipmap/ic_promociones"/>
+
+    <item android:id="@+id/nav_bares"
+        android:title="Bares"
+        android:icon="@mipmap/ic_bares"/>
+
+    <item android:title="Perfil"
+        >
+        <menu>
+            <item android:id="@+id/nav_editar"
+                android:title="Editar"/>
+            <item android:id="@+id/nav_cerrar_sesion"
+                android:title="Cerrar sesión"/>
+        </menu>
+    </item>
+
+</menu>

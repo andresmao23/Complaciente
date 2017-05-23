@@ -5,4 +5,5 @@
     <string name="registrar">Registrar</string>
     <string name="entrar">Entrar</string>
     <string name="login_error">Usuario o contraseña invalidos</string>
+    <string name="promociones">Promociones</string>
 </resources>
