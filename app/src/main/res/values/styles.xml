@@ -1,5 +1,11 @@
 <resources>
 
+    <style name="NavViewTheme" parent="Widget.Design.NavigationView">
+        <item name="android:listDivider">@color/nav_subheader_divisor</item>
+        <item name="android:textColorSecondary">@color/nav_subheader_txt</item>
+        <item name="android:background">@null</item>
+    </style>
+
     <style name="ButtonAccentColor" parent="Widget.AppCompat.Button">
         <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
@@ -11,6 +17,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>

@@ -39,12 +39,16 @@
         </FrameLayout>
 
         <android.support.design.widget.NavigationView
+            app:theme="@style/NavViewTheme"
             android:id="@+id/nav"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             app:menu="@menu/menu_nav"
-            app:headerLayout="@layout/header_nav"/>
+            app:headerLayout="@layout/header_nav"
+            app:itemTextColor="@color/nav_item_text"
+            app:itemIconTint="@color/nav_item_icon"
+            android:background="@color/nav_bg"/>
 
     </android.support.v4.widget.DrawerLayout>
 

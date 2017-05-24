@@ -34,4 +34,5 @@ dependencies {
     compile 'com.android.support:palette-v7:25.2.0'
     compile 'com.github.satyan:sugar:1.4'
     compile 'com.squareup.picasso:picasso:2.3.2'
+    compile 'com.makeramen:roundedimageview:2.3.0'
 }

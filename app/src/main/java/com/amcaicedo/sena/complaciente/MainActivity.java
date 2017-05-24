@@ -2,6 +2,7 @@ package com.amcaicedo.sena.complaciente;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
@@ -16,7 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amcaicedo.sena.complaciente.Util.AppUtil;
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener {
     ImageView usrImg, bannerImg;
@@ -57,7 +60,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Uri uriUsr = Uri.parse(preferences.getString(AppUtil.KEY_USR_IMG, ""));
         Uri uriBanner = Uri.parse(preferences.getString(AppUtil.KEY_USR_IMG_BANNER, ""));
 
-        Picasso.with(this).load(uriUsr).into(usrImg);
+        Transformation rounded = new RoundedTransformationBuilder().oval(true).build();
+
+        Picasso.with(this).load(uriUsr).transform(rounded).into(usrImg);
         Picasso.with(this).load(uriBanner).into(bannerImg);
 
     }
