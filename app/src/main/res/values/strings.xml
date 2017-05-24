@@ -6,4 +6,6 @@
     <string name="entrar">Entrar</string>
     <string name="login_error">Usuario o contraseña invalidos</string>
     <string name="promociones">Promociones</string>
+    <string name="open_drawer">Menu lateral abierto</string>
+    <string name="close_drawer">Menu lateral cerrado</string>
 </resources>

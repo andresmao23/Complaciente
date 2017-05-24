@@ -3,9 +3,11 @@ package com.amcaicedo.sena.complaciente;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,7 +18,7 @@ import android.widget.TextView;
 import com.amcaicedo.sena.complaciente.Util.AppUtil;
 import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener {
     ImageView usrImg, bannerImg;
     TextView usrTxt;
 
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-    
+    ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor = preferences.edit();
 
         drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.setDrawerListener(this);
+
+        toggle = new ActionBarDrawerToggle(this, drawer, R.string.open_drawer, R.string.close_drawer);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         nav = (NavigationView) findViewById(R.id.nav);
         nav.setNavigationItemSelectedListener(this);
         View header = nav.getHeaderView(0);
@@ -56,6 +63,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(toggle.onOptionsItemSelected(item))
+            return true;
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        toggle.syncState();
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_cerrar_sesion:
@@ -70,5 +90,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawer.closeDrawers();
         return false;
+    }
+
+    @Override
+    public void onDrawerSlide(View drawerView, float slideOffset) {
+        toggle.onDrawerSlide(drawerView, slideOffset);
+    }
+
+    @Override
+    public void onDrawerOpened(View drawerView) {
+        toggle.onDrawerOpened(drawerView);
+    }
+
+    @Override
+    public void onDrawerClosed(View drawerView) {
+        toggle.onDrawerClosed(drawerView);
+    }
+
+    @Override
+    public void onDrawerStateChanged(int newState) {
+        toggle.onDrawerStateChanged(newState);
     }
 }
