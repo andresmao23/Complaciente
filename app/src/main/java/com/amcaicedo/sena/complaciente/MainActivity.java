@@ -11,17 +11,23 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amcaicedo.sena.complaciente.Util.AppUtil;
+import com.amcaicedo.sena.complaciente.adapters.PromoAdapter;
+import com.amcaicedo.sena.complaciente.models.Promocion;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener {
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener, PromoAdapter.OnItemClick {
     ImageView usrImg, bannerImg;
     TextView usrTxt;
 
@@ -33,10 +39,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     ActionBarDrawerToggle toggle;
 
+    RecyclerView list;
+    PromoAdapter adapter;
+    List<Promocion> data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Promocion.init(this);
+
+
+        list = (RecyclerView) findViewById(R.id.list);
+        data = Promocion.listAll(Promocion.class);
+        adapter = new PromoAdapter(this, data);
+        adapter.setOnItemClick(list, this);
+
+        list.setAdapter(adapter);
+        list.setLayoutManager(new LinearLayoutManager(this));
+
 
         preferences = getSharedPreferences(AppUtil.PREFERENCES_NAME, MODE_PRIVATE);
         editor = preferences.edit();
@@ -115,5 +136,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onDrawerStateChanged(int newState) {
         toggle.onDrawerStateChanged(newState);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 }
