@@ -69,7 +69,7 @@ public class Usuario extends SugarRecord {
             usuario.setUsr("mao");
             usuario.setPass("123");
             usuario.setUrlusr("https://goo.gl/1IjNWP");
-            usuario.setUrlusr("http://goo.gl/V7irxd");
+            usuario.setUrlbanner("http://goo.gl/V7irxd");
 
             usuario.save();
         }

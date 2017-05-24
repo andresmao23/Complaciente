@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.amcaicedo.sena.complaciente">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icono_complaciente"
@@ -21,10 +23,10 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.amcaicedo.sena.complaciente" />
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity"
+            android:label="@string/promociones"></activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/promociones"
             android:theme="@style/NoAppBar">
 
         </activity>
