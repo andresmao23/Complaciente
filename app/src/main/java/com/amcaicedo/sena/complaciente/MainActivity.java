@@ -140,6 +140,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onItemClick(int position) {
-
+        Intent intent = new Intent(this, PromoDetailActivity.class);
+        intent.putExtra(PromoDetailActivity.KEY_ID, data.get(position).getId());
+        startActivity(intent);
     }
 }

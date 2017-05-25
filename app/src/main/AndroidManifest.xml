@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.amcaicedo.sena.complaciente">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -23,20 +23,24 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.amcaicedo.sena.complaciente" />
 
-        <activity android:name=".MainActivity"
-            android:label="@string/promociones"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/promociones" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/NoAppBar">
-
-        </activity>
-        <activity
-            android:name=".SplashActivity">
+            android:theme="@style/NoAppBar"></activity>
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".PromoDetailActivity"
+            android:theme="@style/NoAppBar"
+            android:parentActivityName=".MainActivity">
+
         </activity>
     </application>
 
