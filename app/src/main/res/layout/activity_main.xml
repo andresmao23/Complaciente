@@ -18,10 +18,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/list"
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/refresh"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab"
@@ -30,7 +37,7 @@
                 android:elevation="6dp"
                 android:layout_gravity="bottom|right"
                 app:fabSize="normal"
-                android:src="@mipmap/ic_fab"
+                android:src="@mipmap/ic_agregar"
                 app:pressedTranslationZ="5dp"
                 android:layout_marginBottom="@dimen/fab_margin"
                 android:layout_marginRight="@dimen/fab_margin"/>

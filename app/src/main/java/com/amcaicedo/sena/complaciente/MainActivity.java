@@ -6,8 +6,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amcaicedo.sena.complaciente.Util.AppUtil;
 import com.amcaicedo.sena.complaciente.adapters.PromoAdapter;
@@ -27,7 +31,7 @@ import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener, PromoAdapter.OnItemClick {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener, PromoAdapter.OnItemClick, SwipeRefreshLayout.OnRefreshListener {
     ImageView usrImg, bannerImg;
     TextView usrTxt;
 
@@ -41,13 +45,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     RecyclerView list;
     PromoAdapter adapter;
+
+    SwipeRefreshLayout refresh;
     List<Promocion> data;
+
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Promocion.init(this);
+
+
+        refresh = (SwipeRefreshLayout) findViewById(R.id.refresh);
+        refresh.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark
+                , R.color.colorAccent);
+        refresh.setOnRefreshListener(this);
 
 
         list = (RecyclerView) findViewById(R.id.list);
@@ -85,6 +99,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Picasso.with(this).load(uriUsr).transform(rounded).into(usrImg);
         Picasso.with(this).load(uriBanner).into(bannerImg);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "Contenido en construcción", Snackbar.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -143,5 +165,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, PromoDetailActivity.class);
         intent.putExtra(PromoDetailActivity.KEY_ID, data.get(position).getId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        Toast.makeText(this, "Cargando nuevo contenido",Toast.LENGTH_SHORT).show();
     }
 }
