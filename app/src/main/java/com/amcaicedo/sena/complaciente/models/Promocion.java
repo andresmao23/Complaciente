@@ -62,7 +62,7 @@ public class Promocion extends SugarRecord{
             promo.save();
 
             promo = new Promocion();
-            promo.setImagen("https://goo.gl/6olNhK");
+            promo.setImagen("http://goo.gl/V7irxd");
             promo.setTitulo("Descuentos");
             promo.setDescripcion("Con este cupón recibes los mejores descuentos.");
             promo.save();
