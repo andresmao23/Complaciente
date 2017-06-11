@@ -25,10 +25,10 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/promociones"/>
+            android:label="@string/promociones" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/NoAppBar"></activity>
+            android:theme="@style/NoAppBar" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,10 +38,9 @@
         </activity>
         <activity
             android:name=".PromoDetailActivity"
-            android:theme="@style/NoAppBar"
-            android:parentActivityName=".MainActivity">
-
-        </activity>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/NoAppBar"></activity>
+        <activity android:name=".CancionesActivity"></activity>
     </application>
 
 </manifest>

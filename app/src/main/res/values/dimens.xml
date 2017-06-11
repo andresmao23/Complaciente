@@ -7,4 +7,6 @@
     <dimen name="padding_medium">20dp</dimen>
     <dimen name="header_img">60dp</dimen>
     <dimen name="template_img_height">140dp</dimen>
+    <dimen name="nombre_cancion">20sp</dimen>
+    <dimen name="nombre_autor">15sp</dimen>
 </resources>
