@@ -40,7 +40,9 @@
             android:name=".PromoDetailActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/NoAppBar"></activity>
-        <activity android:name=".CancionesActivity"></activity>
+        <activity android:name=".CancionesActivity"
+            android:label="@string/lista_canciones"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

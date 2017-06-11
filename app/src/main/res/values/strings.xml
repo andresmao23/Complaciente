@@ -8,4 +8,5 @@
     <string name="promociones">Promociones</string>
     <string name="open_drawer">Menu lateral abierto</string>
     <string name="close_drawer">Menu lateral cerrado</string>
+    <string name="lista_canciones">Lista de canciones</string>
 </resources>

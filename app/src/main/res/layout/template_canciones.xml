@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvNombreCancion"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nombre de la canción"
-        android:textStyle="bold"
-        android:textSize="@dimen/nombre_cancion"/>
+        android:layout_margin="@dimen/padding_small"
+        app:cardElevation="7dp">
 
-    <TextView
-        android:id="@+id/tvNombreAutor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nombre de la canción"
-        android:textStyle="bold"
-        android:textSize="@dimen/nombre_autor"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvNombreCancion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de la canción"
+                android:textStyle="bold"
+                android:textSize="@dimen/nombre_cancion"
+                android:padding="@dimen/padding_small"/>
+
+            <TextView
+                android:id="@+id/tvNombreAutor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de la canción"
+                android:textSize="@dimen/nombre_autor"
+                android:layout_below="@id/tvNombreCancion"
+                android:padding="@dimen/padding_small"/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

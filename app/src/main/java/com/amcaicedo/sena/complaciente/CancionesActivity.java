@@ -1,10 +1,16 @@
 package com.amcaicedo.sena.complaciente;
 
+import android.content.DialogInterface;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.amcaicedo.sena.complaciente.adapters.CancionesAdapter;
 import com.amcaicedo.sena.complaciente.firebase.FirebaseReferences;
@@ -20,15 +26,22 @@ import java.util.List;
 
 public class CancionesActivity extends AppCompatActivity {
 
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+
     RecyclerView reciclerCanciones;
     List<Cancion> canciones;
 
     CancionesAdapter adapter;
 
+    FloatingActionButton fabAgregarCancion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canciones);
+
+        fabAgregarCancion = (FloatingActionButton) findViewById(R.id.fabAgregarCanciones);
 
         reciclerCanciones = (RecyclerView) findViewById(R.id.reciclerCanciones);
 
@@ -36,12 +49,12 @@ public class CancionesActivity extends AppCompatActivity {
 
         canciones = new ArrayList<>();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
 
         adapter = new CancionesAdapter(canciones);
         reciclerCanciones.setAdapter(adapter);
 
-        DatabaseReference myRef = database.getReference(FirebaseReferences.CANCIONES_REFERENCE);
+        myRef = database.getReference(FirebaseReferences.CANCIONES_REFERENCE);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -61,5 +74,48 @@ public class CancionesActivity extends AppCompatActivity {
             }
         });
 
+        fabAgregarCancion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addingNewCancionDialog();
+            }
+        });
+
     }
+
+    private void addingNewCancionDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(CancionesActivity.this);
+        alertDialog.setTitle("Agregar nueva cancion");
+
+        LinearLayout layout = new LinearLayout(this);
+        layout.setPadding(10, 10, 10, 10);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        final EditText nombreCancion = new EditText(this);
+        nombreCancion.setHint("Digite cancion");
+        layout.addView(nombreCancion);
+
+        final EditText nombreAutor = new EditText(this);
+        nombreAutor.setHint("Digite Autor");
+        layout.addView(nombreAutor);
+
+        alertDialog.setView(layout);
+
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Cancion cancion = new Cancion();
+                cancion.setNombre(nombreCancion.getText().toString());
+                cancion.setAutor(nombreAutor.getText().toString());
+                myRef.push().setValue(cancion);
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancelar", null);
+
+        //show alert
+        alertDialog.show();
+    }
+
 }
