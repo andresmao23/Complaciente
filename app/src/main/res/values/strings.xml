@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Complaciente</string>
+    <string name="app_name">Pander</string>
     <string name="login_usr">Nombre de usuario</string>
     <string name="login_pass">Contraseña</string>
     <string name="registrar">Registrar</string>

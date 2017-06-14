@@ -4,7 +4,7 @@
     <color name="colorPrimary">#03A9F4</color>
     <color name="colorPrimaryDark">#0288D1</color>
     <color name="primary_light">#B3E5FC</color>
-    <color name="colorAccent">#FF5722</color>
+    <color name="colorAccent">#FF4081</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
@@ -14,7 +14,10 @@
     <color name="nav_bg">#333333</color>
     <color name="nav_item_text">#efefef</color>
     <color name="nav_item_icon">#dddddd</color>
-    <color name="nav_subheader_txt">#bbbbbb</color>
-    <color name="nav_subheader_divisor">#bbbbbb</color>
+    <!--color name="nav_subheader_txt">#bbbbbb</color>
+    <color name="nav_subheader_divisor">#bbbbbb</color-->
+
+    <color name="nav_subheader_txt">#0288D1</color>
+    <color name="nav_subheader_divisor">#0288D1</color>
 
 </resources>

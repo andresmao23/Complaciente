@@ -45,7 +45,11 @@ public class CancionesActivity extends AppCompatActivity {
 
         reciclerCanciones = (RecyclerView) findViewById(R.id.reciclerCanciones);
 
-        reciclerCanciones.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager mManager = new LinearLayoutManager(this);
+        mManager.setReverseLayout(true);
+        mManager.setStackFromEnd(true);
+
+        reciclerCanciones.setLayoutManager(mManager);
 
         canciones = new ArrayList<>();
 
