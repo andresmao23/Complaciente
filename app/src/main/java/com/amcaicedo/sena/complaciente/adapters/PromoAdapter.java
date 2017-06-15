@@ -57,6 +57,7 @@ public class PromoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         PromoViewHolder promoViewHolder = (PromoViewHolder) holder;
         promoViewHolder.title.setText(promo.getTitulo());
+        promoViewHolder.bar.setText(promo.getBar());
         promoViewHolder.content.setText(promo.getDescripcion());
 
         Uri uri = Uri.parse(promo.getImagen());
@@ -82,12 +83,14 @@ public class PromoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     class PromoViewHolder extends RecyclerView.ViewHolder{
 
         ImageView img;
+        TextView bar;
         TextView title;
         TextView content;
 
         public PromoViewHolder(View itemView) {
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.img);
+            bar = (TextView) itemView.findViewById(R.id.bar);
             title = (TextView) itemView.findViewById(R.id.title);
             content = (TextView) itemView.findViewById(R.id.content);
         }

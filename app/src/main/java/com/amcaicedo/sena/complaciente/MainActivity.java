@@ -136,8 +136,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 finish();
                 break;
             case R.id.nav_lista_canciones:
-                intent = new Intent(this, CancionesActivity.class);
-                startActivity(intent);
+                /*intent = new Intent(this, CancionesActivity.class);
+                startActivity(intent);*/
                 break;
         }
         drawer.closeDrawers();

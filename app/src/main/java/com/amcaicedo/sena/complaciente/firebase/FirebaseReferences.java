@@ -6,4 +6,5 @@ package com.amcaicedo.sena.complaciente.firebase;
 
 public class FirebaseReferences {
     public final static String CANCIONES_REFERENCE = "canciones";
+    public final static String CHILANGO_REFERENCE = "chilango";
 }

@@ -36,10 +36,16 @@ public class CancionesActivity extends AppCompatActivity {
 
     FloatingActionButton fabAgregarCancion;
 
+    Bundle extras;
+    String firebase_reference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canciones);
+
+        extras = getIntent().getExtras();
+        firebase_reference = extras.getString("FIREBASE_REFERENCE");
 
         fabAgregarCancion = (FloatingActionButton) findViewById(R.id.fabAgregarCanciones);
 
@@ -58,12 +64,12 @@ public class CancionesActivity extends AppCompatActivity {
         adapter = new CancionesAdapter(canciones);
         reciclerCanciones.setAdapter(adapter);
 
-        myRef = database.getReference(FirebaseReferences.CANCIONES_REFERENCE);
+        myRef = database.getReference(firebase_reference);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.child("canciones").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //Log.i("CANCION", dataSnapshot.toString());
+                Log.i("CANCION", dataSnapshot.toString());
                 canciones.removeAll(canciones);
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Cancion cancion = snapshot.getValue(Cancion.class);
@@ -112,7 +118,7 @@ public class CancionesActivity extends AppCompatActivity {
                 Cancion cancion = new Cancion();
                 cancion.setNombre(nombreCancion.getText().toString());
                 cancion.setAutor(nombreAutor.getText().toString());
-                myRef.push().setValue(cancion);
+                myRef.child("canciones").push().setValue(cancion);
             }
         });
 

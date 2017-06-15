@@ -40,13 +40,23 @@
             />
 
         <TextView
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:id="@+id/bar"
+            android:padding="@dimen/padding_small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre del bar"
+            android:layout_below="@id/img"
+            />
+
+        <TextView
             style="@style/Base.TextAppearance.AppCompat.Body1"
             android:id="@+id/content"
             android:padding="@dimen/padding_small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Descripcion de la promocion"
-            android:layout_below="@id/img"
+            android:layout_below="@id/bar"
             />
 
         </RelativeLayout>

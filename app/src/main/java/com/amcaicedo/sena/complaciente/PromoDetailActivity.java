@@ -1,12 +1,16 @@
 package com.amcaicedo.sena.complaciente;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +25,9 @@ public class PromoDetailActivity extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbarLayout;
 
     ImageView img;
-    TextView titulo, contenido;
+    TextView titulo, bar, contenido;
+
+    AppCompatButton btnIngresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class PromoDetailActivity extends AppCompatActivity {
 
         img = (ImageView) findViewById(R.id.img);
         titulo = (TextView) findViewById(R.id.titulo);
+        bar = (TextView) findViewById(R.id.bar);
         contenido = (TextView) findViewById(R.id.content);
 
         long id = getIntent().getExtras().getLong(KEY_ID);
@@ -55,7 +62,18 @@ public class PromoDetailActivity extends AppCompatActivity {
         collapsingToolbarLayout.setTitle(promo.getTitulo());
         collapsingToolbarLayout.setContentScrimColor(p.getVibrantColor(0));
         titulo.setText(promo.getTitulo());
+        bar.setText(promo.getBar());
         contenido.setText(promo.getDescripcion());
+
+        btnIngresar = (AppCompatButton) findViewById(R.id.btnIngresar);
+        btnIngresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PromoDetailActivity.this, CancionesActivity.class);
+                intent.putExtra("FIREBASE_REFERENCE", bar.getText());
+                startActivity(intent);
+            }
+        });
 
     }
 }
