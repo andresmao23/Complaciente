@@ -11,5 +11,6 @@ public class AppUtil {
     public static final String KEY_USR_IMG = "usr_img";
     public static final String KEY_USR_IMG_BANNER = "usr_img_banner";
     public static final String KEY_LOGIN = "login";
+    public static final String KEY_BAR = "bar";
 
 }

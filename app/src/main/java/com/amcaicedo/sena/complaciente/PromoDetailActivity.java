@@ -1,6 +1,7 @@
 package com.amcaicedo.sena.complaciente;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amcaicedo.sena.complaciente.Util.AppUtil;
 import com.amcaicedo.sena.complaciente.models.Promocion;
 import com.squareup.picasso.Picasso;
 
@@ -29,10 +31,17 @@ public class PromoDetailActivity extends AppCompatActivity {
 
     AppCompatButton btnIngresar;
 
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promo_detail);
+
+        preferences = getSharedPreferences(AppUtil.PREFERENCES_NAME, MODE_PRIVATE);
+        editor = preferences.edit();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,6 +80,10 @@ public class PromoDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PromoDetailActivity.this, CancionesActivity.class);
                 intent.putExtra("FIREBASE_REFERENCE", bar.getText());
+
+                editor.putString(AppUtil.KEY_BAR, bar.getText().toString());
+                editor.commit();
+
                 startActivity(intent);
             }
         });

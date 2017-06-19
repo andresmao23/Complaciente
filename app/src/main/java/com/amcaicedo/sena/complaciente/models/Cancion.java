@@ -6,17 +6,29 @@ package com.amcaicedo.sena.complaciente.models;
 
 public class Cancion {
 
+    private String id;
     private String nombre;
     private String autor;
     private String album;
+    private int votos;
 
     public Cancion() {
     }
 
-    public Cancion(String nombre, String autor, String album) {
+    public Cancion(String nombre, String autor, String album, int votos) {
         this.nombre = nombre;
         this.autor = autor;
         this.album = album;
+        this.votos = votos;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -42,4 +54,13 @@ public class Cancion {
     public void setAlbum(String album) {
         this.album = album;
     }
+
+    public int getVotos() {
+        return votos;
+    }
+
+    public void setVotos(int votos) {
+        this.votos = votos;
+    }
+
 }

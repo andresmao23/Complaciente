@@ -61,18 +61,19 @@ public class CancionesActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
 
-        adapter = new CancionesAdapter(canciones);
+        adapter = new CancionesAdapter(canciones, this);
         reciclerCanciones.setAdapter(adapter);
 
         myRef = database.getReference(firebase_reference);
 
-        myRef.child("canciones").addValueEventListener(new ValueEventListener() {
+        myRef.child("canciones").orderByChild("votos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.i("CANCION", dataSnapshot.toString());
                 canciones.removeAll(canciones);
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Cancion cancion = snapshot.getValue(Cancion.class);
+                    cancion.setId(snapshot.getKey());
                     canciones.add(cancion);
                 }
                 adapter.notifyDataSetChanged();
@@ -118,7 +119,10 @@ public class CancionesActivity extends AppCompatActivity {
                 Cancion cancion = new Cancion();
                 cancion.setNombre(nombreCancion.getText().toString());
                 cancion.setAutor(nombreAutor.getText().toString());
-                myRef.child("canciones").push().setValue(cancion);
+                cancion.setVotos(0);
+                String id = myRef.child("canciones").push().getKey();
+                cancion.setId(id);
+                myRef.child("canciones").child(id).setValue(cancion);
             }
         });
 

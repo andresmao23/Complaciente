@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_small"
-        app:cardElevation="7dp">
+        app:cardElevation="7dp"
+        app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,6 +32,32 @@
                 android:textSize="@dimen/nombre_autor"
                 android:layout_below="@id/tvNombreCancion"
                 android:padding="@dimen/padding_small"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/tvNombreAutor">
+
+                <TextView
+                    android:id="@+id/tvVotos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Votos"
+                    android:textSize="@dimen/nombre_autor"
+                    android:layout_below="@id/tvNombreAutor"
+                    android:padding="@dimen/padding_small"/>
+
+                <ImageView
+                    android:id="@+id/imgLike"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_like"/>
+
+            </LinearLayout>
+
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
