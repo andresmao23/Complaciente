@@ -78,7 +78,8 @@ public class PromoDetailActivity extends AppCompatActivity {
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PromoDetailActivity.this, CancionesActivity.class);
+                //Intent intent = new Intent(PromoDetailActivity.this, CancionesActivity.class);
+                Intent intent = new Intent(PromoDetailActivity.this, FragmentContentActivity.class);
                 intent.putExtra("FIREBASE_REFERENCE", bar.getText());
 
                 editor.putString(AppUtil.KEY_BAR, bar.getText().toString());
