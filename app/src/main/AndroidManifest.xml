@@ -4,7 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
+
     <application
+        android:name=".BeaconNotification"
         android:allowBackup="true"
         android:icon="@drawable/pandersplash"
         android:label="@string/app_name"
@@ -44,9 +48,11 @@
             android:name=".CancionesActivity"
             android:label="@string/lista_canciones"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".FragmentContentActivity"
-            android:theme="@style/MyTheme"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".FragmentContentActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/MyTheme" />
+        <activity android:name=".CartaActivity"></activity>
     </application>
 
 </manifest>
