@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_small"
+        app:cardElevation="7dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvNommbreEmisor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="De:"
+                android:textStyle="bold"
+                android:textSize="@dimen/nombre_cancion"
+                android:padding="@dimen/padding_small"/>
+
+            <TextView
+                android:id="@+id/tvNommbreReceptor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Para:"
+                android:textStyle="bold"
+                android:textSize="@dimen/nombre_cancion"
+                android:padding="@dimen/padding_small"
+                android:layout_below="@id/tvNommbreEmisor"/>
+
+            <TextView
+                android:id="@+id/tvDetalleMensaje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mensaje:"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:padding="@dimen/padding_small"
+                android:layout_below="@id/tvNommbreReceptor"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
