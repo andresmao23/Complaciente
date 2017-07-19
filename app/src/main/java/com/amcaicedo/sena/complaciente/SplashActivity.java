@@ -14,7 +14,12 @@ import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
 import com.estimote.sdk.SystemRequirementsChecker;
+import com.felipecsl.gifimageview.library.GifImageView;
 
+import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,6 +32,7 @@ import java.util.UUID;
 public class SplashActivity extends Activity {
 
     boolean login;
+    private GifImageView gifImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,16 @@ public class SplashActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_splash);
+
+        gifImageView = (GifImageView) findViewById(R.id.gifImageView);
+
+        try {
+            //InputStream inputStream = getAssets().open("giphy.gif");
+            InputStream inputStream = getAssets().open("panderequalizer.gif");
+            byte[] bytes = IOUtils.toByteArray(inputStream);
+            gifImageView.setBytes(bytes);
+            gifImageView.startAnimation();
+        }catch (IOException e){}
 
         TimerTask task = new TimerTask() {
             SharedPreferences preferences = getSharedPreferences(AppUtil.PREFERENCES_NAME, MODE_PRIVATE);

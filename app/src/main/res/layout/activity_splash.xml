@@ -4,12 +4,19 @@
     android:id="@+id/activity_splash"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context="com.amcaicedo.sena.complaciente.SplashActivity">
 
-    <ImageView
+    <!--ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/ic_pander_blanco"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"/-->
+
+    <com.felipecsl.gifimageview.library.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/gifImageView"
+        android:scaleType="fitCenter"/>
 
 </RelativeLayout>
