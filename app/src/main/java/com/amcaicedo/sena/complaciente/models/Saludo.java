@@ -1,5 +1,7 @@
 package com.amcaicedo.sena.complaciente.models;
 
+import android.net.Uri;
+
 /**
  * Created by asus on 19/07/2017.
  */
@@ -9,6 +11,7 @@ public class Saludo {
     private String emisor;
     private String receptor;
     private String detalle;
+    private String url;
 
     public Saludo() {
     }
@@ -43,5 +46,14 @@ public class Saludo {
     public void setDetalle(String detalle) {
         this.detalle = detalle;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     //endregion
 }

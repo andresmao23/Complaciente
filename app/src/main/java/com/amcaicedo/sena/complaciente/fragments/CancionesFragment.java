@@ -1,6 +1,7 @@
 package com.amcaicedo.sena.complaciente.fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -46,6 +47,8 @@ public class CancionesFragment extends Fragment {
     Bundle extras;
     String firebase_reference;
 
+    ProgressDialog progressDialog;
+
     public CancionesFragment() {
         // Required empty public constructor
     }
@@ -72,6 +75,13 @@ public class CancionesFragment extends Fragment {
 
         canciones = new ArrayList<>();
 
+        //Progress dialog
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle("Lista de canciones...");
+        progressDialog.setMessage("Cargando lista de canciones");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         database = FirebaseDatabase.getInstance();
 
         adapter = new CancionesAdapter(canciones, getActivity());
@@ -90,6 +100,7 @@ public class CancionesFragment extends Fragment {
                     canciones.add(cancion);
                 }
                 adapter.notifyDataSetChanged();
+                progressDialog.dismiss();
             }
 
             @Override
