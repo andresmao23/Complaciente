@@ -58,6 +58,7 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/MyTheme" />
         <activity android:name=".CartaActivity"></activity>
+
     </application>
 
 </manifest>
