@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="my_images" path="Android/data/com.amcaicedo.sena.complaciente/files/Pictures" />
+    <!--external-files-path name="PictureApp" path="Android/data/com.amcaicedo.sena.complaciente/storage/emulated/0/MyPictureApp" /-->
+</paths>

@@ -52,7 +52,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static android.Manifest.permission.CAMERA;
@@ -150,10 +153,10 @@ public class SaludosFragment extends Fragment {
             }
         });
 
-        /*if(mayRequestStoragePermission())
+        if(mayRequestStoragePermission())
             Toast.makeText(getActivity(), "Permisos autorizados", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(getActivity(), "Permisos NO autorizados", Toast.LENGTH_SHORT).show();*/
+            Toast.makeText(getActivity(), "Permisos NO autorizados", Toast.LENGTH_SHORT).show();
 
         fabAgregarSaludoFragment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,7 +256,7 @@ public class SaludosFragment extends Fragment {
     }
 
 
-    /*private boolean mayRequestStoragePermission() {
+    private boolean mayRequestStoragePermission() {
 
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
             return true;
@@ -276,7 +279,7 @@ public class SaludosFragment extends Fragment {
         }
 
         return false;
-    }*/
+    }
 
     private void showOptions() {
         final CharSequence[] option = {"Tomar foto", "Elegir de galeria", "Cancelar"};
@@ -287,7 +290,8 @@ public class SaludosFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if(option[which] == "Tomar foto"){
-                    //openCamera();
+                    openCamera();
+                    //dispatchTakePictureIntent();
                     Toast.makeText(getActivity(), "Elemento en construcción", Toast.LENGTH_SHORT).show();
                 }else if(option[which] == "Elegir de galeria"){
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -302,7 +306,7 @@ public class SaludosFragment extends Fragment {
         builder.show();
     }
 
-    private void openCamera() {
+    /*private void openCamera() {
         File file = new File(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
         boolean isDirectoryCreated = file.exists();
 
@@ -322,6 +326,40 @@ public class SaludosFragment extends Fragment {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(newFile));
             startActivityForResult(intent, PHOTO_CODE);
         }
+    }*/
+
+    private void openCamera() {
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+
+
+        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = null;
+        try {
+            image = File.createTempFile(
+                    imageFileName,  // prefix
+                    ".jpg",         // suffix
+                    storageDir      // directory
+            );
+        } catch (IOException e) {
+            Log.e("ERROR DE CAMARA", e.getMessage());
+        }
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mPath = image.getAbsolutePath();
+
+        Log.e("PATH CAMARA", mPath);
+        File newFile = new File(mPath);
+        Log.e("PATH CAMARA FILE", newFile.toString());
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getActivity(), "com.amcaicedo.sena.complaciente.FragmentContentActivity", newFile));
+            startActivityForResult(intent, PHOTO_CODE);
+        }catch (Exception e){
+            Log.e("Excepcion de camara", e.getMessage());
+        }
+
     }
 
     @Override
@@ -341,7 +379,8 @@ public class SaludosFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        Log.e("RESULT CODE", ""+resultCode);
+        Log.e("REQUEST CODE", ""+requestCode);
         if(resultCode == RESULT_OK){
             switch (requestCode){
                 case PHOTO_CODE:
@@ -369,7 +408,6 @@ public class SaludosFragment extends Fragment {
         }
     }
 
-/*
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -406,6 +444,50 @@ public class SaludosFragment extends Fragment {
         });
 
         builder.show();
+    }
+
+    /*String mCurrentPhotoPath;
+
+    static final int REQUEST_TAKE_PHOTO = 1;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                Log.e("Excepcion de camara", ex.getMessage());
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(getActivity(),
+                        "com.amcaicedo.sena.complaciente",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
+
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = new File(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+        //File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  // prefix
+                ".jpg",         // suffix
+                storageDir      // directory
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
     }*/
 
 }
