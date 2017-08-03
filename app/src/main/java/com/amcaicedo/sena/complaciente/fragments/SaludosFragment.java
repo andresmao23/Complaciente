@@ -292,7 +292,7 @@ public class SaludosFragment extends Fragment {
                 if(option[which] == "Tomar foto"){
                     openCamera();
                     //dispatchTakePictureIntent();
-                    Toast.makeText(getActivity(), "Elemento en construcción", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Elemento en construcción", Toast.LENGTH_SHORT).show();
                 }else if(option[which] == "Elegir de galeria"){
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
@@ -397,6 +397,10 @@ public class SaludosFragment extends Fragment {
 
                     Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                     imgFoto.setImageBitmap(bitmap);
+                    //path = Uri.parse(mPath);
+                    File newFile = new File(mPath);
+                    path = FileProvider.getUriForFile(getActivity(), "com.amcaicedo.sena.complaciente.FragmentContentActivity", newFile);
+                    Log.e("Ruta de la foto CAMARA", String.valueOf(path));
                     break;
                 case SELECT_PICTURE:
                     path = data.getData();
