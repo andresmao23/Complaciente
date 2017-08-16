@@ -57,9 +57,12 @@ public class SaludoAdapter extends RecyclerView.Adapter<SaludoAdapter.SaludoView
         holder.tvNombreEmisor.setText("De: " + saludo.getEmisor());
         holder.tvNombreReceptor.setText("Para: " + saludo.getReceptor());
         holder.tvDetalleMensaje.setText("Mensaje: " + saludo.getDetalle());
-        Log.e("URI DESCARGA", saludo.getUrl());
+        //Log.e("URI DESCARGA", saludo.getUrl());
         //holder.img.setImageURI(Uri.parse(saludo.getUri()));
-        Glide.with(context).load(saludo.getUrl()).fitCenter().centerCrop().into(holder.img);
+        if(saludo.getUrl() == null)
+            Glide.with(context).load(R.drawable.discoteca).fitCenter().centerCrop().into(holder.img);
+        else
+            Glide.with(context).load(saludo.getUrl()).fitCenter().centerCrop().into(holder.img);
     }
 
     @Override

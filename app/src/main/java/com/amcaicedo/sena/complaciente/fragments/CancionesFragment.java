@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -113,6 +114,26 @@ public class CancionesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 addingNewCancionDialog();
+            }
+        });
+
+        reciclerCancionesFragment.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0)
+                    // Puedes ocultarlo simplemente
+                    //fab.hide();
+                    // o añadir la animación deseada
+                    fabAgregarCancionFragment.animate().translationY(fabAgregarCancionFragment.getHeight() +
+                            getResources().getDimension(R.dimen.fab_margin))
+                            .setInterpolator(new LinearInterpolator())
+                            .setDuration(1000); // Cambiar al tiempo deseado
+                else if (dy < 0)
+                    //fab.show();
+                    fabAgregarCancionFragment.animate().translationY(0)
+                            .setInterpolator(new LinearInterpolator())
+                            .setDuration(1000); // Cambiar al tiempo deseado
             }
         });
 

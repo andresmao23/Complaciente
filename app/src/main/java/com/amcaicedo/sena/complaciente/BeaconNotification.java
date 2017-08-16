@@ -65,6 +65,7 @@ public class BeaconNotification extends Application{
                 .setContentTitle(title)
                 .setContentText(message)
                 .setStyle(bigPictureStyle)
+                .setAutoCancel(true)
                 .addAction(R.mipmap.ic_launcher, "Ver carta", piResult);
 
         notificationManager.notify(0, builder.build());

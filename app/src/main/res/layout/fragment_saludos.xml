@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.amcaicedo.sena.complaciente.fragments.SaludosFragment">
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/reciclerSaludosFragment"
         android:layout_width="match_parent"

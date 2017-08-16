@@ -40,6 +40,7 @@ import com.amcaicedo.sena.complaciente.adapters.CancionesAdapter;
 import com.amcaicedo.sena.complaciente.adapters.SaludoAdapter;
 import com.amcaicedo.sena.complaciente.models.Cancion;
 import com.amcaicedo.sena.complaciente.models.Saludo;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -106,7 +107,6 @@ public class SaludosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_saludos, container, false);
-
 
         extras = getActivity().getIntent().getExtras();
         firebase_reference = extras.getString("FIREBASE_REFERENCE");
@@ -210,7 +210,6 @@ public class SaludosFragment extends Fragment {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final Uri[] imgDescarga = new Uri[1];
                 /*saludo = new Saludo();
                 saludo.setEmisor(emisor.getText().toString());
                 saludo.setReceptor(receptor.getText().toString());
@@ -222,26 +221,39 @@ public class SaludosFragment extends Fragment {
                 progressDialog.setCancelable(false);
                 progressDialog.show();
 
-                StorageReference filePath = storage.child("fotos").child(path.getLastPathSegment());
-                filePath.putFile(path).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        //imgDescarga[0] = taskSnapshot.getDownloadUrl();
-                        //Log.e("URI A SUBIR", imgDescarga[0].toString());
+                if(path != null) {
+                    StorageReference filePath = storage.child("fotos").child(path.getLastPathSegment());
+                    filePath.putFile(path).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //imgDescarga[0] = taskSnapshot.getDownloadUrl();
+                            //Log.e("URI A SUBIR", imgDescarga[0].toString());
 
 
-                        saludo.setEmisor(emisor.getText().toString());
-                        saludo.setReceptor(receptor.getText().toString());
-                        saludo.setDetalle(detalleMensaje.getText().toString());
-                        saludo.setUrl(taskSnapshot.getDownloadUrl().toString());
+                            saludo.setEmisor(emisor.getText().toString());
+                            saludo.setReceptor(receptor.getText().toString());
+                            saludo.setDetalle(detalleMensaje.getText().toString());
+                            saludo.setUrl(taskSnapshot.getDownloadUrl().toString());
 
-                        Toast.makeText(getActivity(), "Foto subida exitosamente", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                        String id = myRef.child("canciones").push().getKey();
-                        myRef.child("saludos").child(id).setValue(saludo);
-                    }
-                });
-
+                            Toast.makeText(getActivity(), "Foto subida exitosamente", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            String id = myRef.child("canciones").push().getKey();
+                            myRef.child("saludos").child(id).setValue(saludo);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), "No existe foto", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else{
+                    saludo.setEmisor(emisor.getText().toString());
+                    saludo.setReceptor(receptor.getText().toString());
+                    saludo.setDetalle(detalleMensaje.getText().toString());
+                    String id = myRef.child("canciones").push().getKey();
+                    myRef.child("saludos").child(id).setValue(saludo);
+                    progressDialog.dismiss();
+                }
                 /*saludo.setUrl(String.valueOf(imgDescarga[0]));
 
                 String id = myRef.child("canciones").push().getKey();
