@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="DATABASE"
-            android:value="pander_new.db" />
+            android:value="pandernuevo.db" />
         <meta-data
             android:name="VERSION"
             android:value="1" />
