@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.amcaicedo.sena.complaciente.Util.AppUtil;
 import com.amcaicedo.sena.complaciente.adapters.PromoAdapter;
+import com.amcaicedo.sena.complaciente.fragments.HomeFragment;
 import com.amcaicedo.sena.complaciente.models.Promocion;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
@@ -234,8 +235,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(this, PromoDetailActivity.class);
+        /*Intent intent = new Intent(this, PromoDetailActivity.class);
         intent.putExtra(PromoDetailActivity.KEY_ID, data.get(position).getId());
+        startActivity(intent);*/
+
+        Intent intent = new Intent(this, FragmentContentNavigationActivity.class);
+        intent.putExtra(FragmentContentNavigationActivity.KEY_ID, data.get(position).getId());
+        intent.putExtra("FIREBASE_REFERENCE", data.get(position).getBar());
         startActivity(intent);
     }
 

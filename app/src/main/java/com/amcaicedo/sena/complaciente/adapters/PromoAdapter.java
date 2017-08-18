@@ -58,7 +58,7 @@ public class PromoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         PromoViewHolder promoViewHolder = (PromoViewHolder) holder;
         promoViewHolder.title.setText(promo.getTitulo());
         promoViewHolder.bar.setText(promo.getBar());
-        promoViewHolder.content.setText(promo.getDescripcion());
+        //promoViewHolder.content.setText(promo.getDescripcion());
 
         Uri uri = Uri.parse(promo.getImagen());
         Picasso.with(context).load(uri).into(promoViewHolder.img);
@@ -92,7 +92,7 @@ public class PromoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             img = (ImageView) itemView.findViewById(R.id.img);
             bar = (TextView) itemView.findViewById(R.id.bar);
             title = (TextView) itemView.findViewById(R.id.title);
-            content = (TextView) itemView.findViewById(R.id.content);
+            //content = (TextView) itemView.findViewById(R.id.content);
         }
     }
 }

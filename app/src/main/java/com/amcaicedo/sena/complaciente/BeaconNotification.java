@@ -32,12 +32,12 @@ public class BeaconNotification extends Application{
         beaconManager.setMonitoringListener(new BeaconManager.MonitoringListener() {
             @Override
             public void onEnteredRegion(Region region, List<Beacon> list) {
-                showInNotification("Bienvenido a nuestra discoteca LAND", "Conoce nuestros productos y precios");
+                showInNotification("Bienvenido a CHILANGO bar", "Conoce nuestros productos y precios");
             }
             @Override
             public void onExitedRegion(Region region) {
                 // could add an "exit" notification too if you want (-:
-                showOutNotification("Gracias por visitar LAND Disco", "Te esperamos pronto!");
+                showOutNotification("Gracias por visitar CHILANGO bar", "Te esperamos pronto!");
             }
         });
         beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
@@ -66,6 +66,7 @@ public class BeaconNotification extends Application{
                 .setContentText(message)
                 .setStyle(bigPictureStyle)
                 .setAutoCancel(true)
+                .setContentIntent(piResult)
                 .addAction(R.mipmap.ic_launcher, "Ver carta", piResult);
 
         notificationManager.notify(0, builder.build());

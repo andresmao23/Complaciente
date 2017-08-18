@@ -69,6 +69,7 @@ import static android.app.Activity.RESULT_OK;
 public class SaludosFragment extends Fragment {
 
     ProgressDialog progressDialog;
+    ProgressDialog progressDialogCanciones;
 
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -128,6 +129,13 @@ public class SaludosFragment extends Fragment {
         adapter = new SaludoAdapter(saludos, getActivity());
         reciclerSaludosFragment.setAdapter(adapter);
 
+
+        //Progress dialog
+        progressDialogCanciones = new ProgressDialog(getActivity());
+        progressDialogCanciones.setTitle("Lista de saludos...");
+        progressDialogCanciones.setMessage("Cargando lista de saludos");
+        progressDialogCanciones.setCancelable(false);
+        progressDialogCanciones.show();
         progressDialog = new ProgressDialog(getActivity());
 
         storage = FirebaseStorage.getInstance().getReference();
@@ -145,6 +153,7 @@ public class SaludosFragment extends Fragment {
                     saludos.add(saludo);
                 }
                 adapter.notifyDataSetChanged();
+                progressDialogCanciones.dismiss();
             }
 
             @Override

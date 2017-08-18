@@ -58,21 +58,21 @@ public class Promocion extends SugarRecord{
 
         if(count(Promocion.class)<1) {
             Promocion promo = new Promocion();
-            promo.setBar("chilango");
+            promo.setBar("CHILANGO");
             promo.setImagen("https://goo.gl/6olNhK");
             promo.setTitulo("Fechas especiales");
-            promo.setDescripcion("En esa fecha especial te tenemos sorpresas para ti y tus amigos.");
+            promo.setDescripcion("En esa fecha especial te tenemos sorpresas para ti y tus amigos. Puedes enviar tus canciones favoritas al administrador, votar por otras canciones, enviar saludos a tus amigos en la fiesta, subir fotos y mucho más.");
             promo.save();
 
             promo = new Promocion();
-            promo.setBar("wokin");
+            promo.setBar("WOKIN");
             promo.setImagen("https://goo.gl/n4qqnm");
             promo.setTitulo("Mariachis");
             promo.setDescripcion("Los jueves tenemos mariachis para disfrutar.");
             promo.save();
 
             promo = new Promocion();
-            promo.setBar("land");
+            promo.setBar("LAND");
             promo.setImagen("http://goo.gl/V7irxd");
             promo.setTitulo("Descuentos");
             promo.setDescripcion("Con este cupón recibes los mejores descuentos.");

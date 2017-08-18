@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Window;
 
 import com.amcaicedo.sena.complaciente.Util.AppUtil;
+import com.amcaicedo.sena.complaciente.models.Promocion;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
@@ -62,11 +63,14 @@ public class SplashActivity extends Activity {
 
             @Override
             public void run() {
-                if (login)
+                intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                /*if (login)
                     intent = new Intent(SplashActivity.this, MainActivity.class);
                 else
                     intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
+                intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);*/
 
                 finish();
             }

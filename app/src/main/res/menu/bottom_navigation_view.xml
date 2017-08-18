@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navInicio"
+        android:title="Inicio"
+        android:icon="@mipmap/ic_home"/>
+    <item
+        android:id="@+id/navCanciones"
+        android:title="Canciones"
+        android:icon="@mipmap/ic_canciones_fragment"/>
+    <item
+        android:id="@+id/navSaludos"
+        android:title="Saludos"
+        android:icon="@mipmap/ic_saludos_fragment"/>
+</menu>
