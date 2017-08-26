@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="DATABASE"
-            android:value="pandernuevo.db" />
+            android:value="pander_nuevo.db" />
         <meta-data
             android:name="VERSION"
             android:value="1" />
@@ -33,7 +33,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/promociones" />
+            android:label="@string/discotecas" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/NoAppBar" />

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:design="http://schemas.android.com/apk/res-auto"
+    android:background="#DFDBDB"
     tools:context="com.amcaicedo.sena.complaciente.fragments.HomeFragment">
 
     <android.support.design.widget.CoordinatorLayout

@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener, PromoAdapter.OnItemClick, SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener, PromoAdapter.OnItemClick {
     ImageView usrImg, bannerImg;
     TextView usrTxt;
 
@@ -59,11 +59,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     SwipeRefreshLayout refresh;
     List<Promocion> data;
-
-    FloatingActionButton fab;
-
-
-
 
     private static final Map<String, List<String>> PLACES_BY_BEACONS;
 
@@ -108,13 +103,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Promocion.init(this);
 
-
-        refresh = (SwipeRefreshLayout) findViewById(R.id.refresh);
-        refresh.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark
-                , R.color.colorAccent);
-        refresh.setOnRefreshListener(this);
-
-
         list = (RecyclerView) findViewById(R.id.list);
         data = Promocion.listAll(Promocion.class);
         adapter = new PromoAdapter(this, data);
@@ -150,17 +138,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Picasso.with(this).load(uriUsr).transform(rounded).into(usrImg);
         Picasso.with(this).load(uriBanner).into(bannerImg);
-
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "Contenido en construcción", Snackbar.LENGTH_LONG).show();
-            }
-        });
-
-
-
 
 
         beaconManager = new BeaconManager(this);
@@ -244,16 +221,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intent.putExtra("FIREBASE_REFERENCE", data.get(position).getBar());
         startActivity(intent);
     }
-
-    @Override
-    public void onRefresh() {
-        Toast.makeText(this, "Cargando nuevo contenido",Toast.LENGTH_SHORT).show();
-    }
-
-
-
-
-
 
     @Override
     protected void onResume() {
