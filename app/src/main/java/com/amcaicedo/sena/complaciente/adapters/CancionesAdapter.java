@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amcaicedo.sena.complaciente.FragmentContentNavigationActivity;
 import com.amcaicedo.sena.complaciente.R;
 import com.amcaicedo.sena.complaciente.Util.AppUtil;
 import com.amcaicedo.sena.complaciente.firebase.FirebaseReferences;
@@ -47,8 +48,8 @@ public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.Canc
     public CancionesAdapter(List<Cancion> canciones, Context context) {
         this.canciones = canciones;
         preference = context.getSharedPreferences("preference", MODE_PRIVATE);
-        String firebase_reference = preference.getString(AppUtil.KEY_BAR, "");
-        myRef = database.getReference(firebase_reference);
+        //String firebase_reference = preference.getString(AppUtil.KEY_BAR, "");
+        myRef = database.getReference(FragmentContentNavigationActivity.nombreBar);
         Log.i("REFERENCIA", myRef.toString());
 
         cel = new ChildEventListener() {

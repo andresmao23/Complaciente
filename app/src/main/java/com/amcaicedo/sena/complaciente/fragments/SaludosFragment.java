@@ -255,6 +255,7 @@ public class SaludosFragment extends Fragment {
                             Toast.makeText(getActivity(), "No existe foto", Toast.LENGTH_SHORT).show();
                         }
                     });
+                    path = null; // Reseteamos la variabe path
                 }else{
                     saludo.setEmisor(emisor.getText().toString());
                     saludo.setReceptor(receptor.getText().toString());

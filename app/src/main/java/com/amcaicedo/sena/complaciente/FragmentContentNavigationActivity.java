@@ -18,6 +18,9 @@ public class FragmentContentNavigationActivity extends AppCompatActivity {
 
     public static final String KEY_ID="id";
 
+    public static String nombreBar = "bar";
+    Bundle extras;
+
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
 
@@ -48,6 +51,10 @@ public class FragmentContentNavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_content_navigation);
+
+        extras = getIntent().getExtras();
+        nombreBar = extras.getString("FIREBASE_REFERENCE");
+
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, new HomeFragment()).commit();
