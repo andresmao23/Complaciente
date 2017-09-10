@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.amcaicedo.sena.complaciente.FragmentContentNavigationActivity;
 import com.amcaicedo.sena.complaciente.R;
 import com.amcaicedo.sena.complaciente.Util.AppUtil;
@@ -33,7 +34,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by asus on 10/06/2017.
  */
 
-public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.CancionesViewHolder>{
+public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.CancionesViewHolder> {
 
     List<Cancion> canciones;
 
@@ -92,7 +93,7 @@ public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.Canc
     }
 
     @Override
-    public void onBindViewHolder(CancionesViewHolder holder, int position) {
+    public void onBindViewHolder(final CancionesViewHolder holder, int position) {
         final Cancion cancion = canciones.get(position);
         holder.tvNombreCancion.setText(cancion.getNombre());
         holder.tvNombreAutor.setText(cancion.getAutor());
@@ -101,6 +102,12 @@ public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.Canc
             @Override
             public void onClick(View v) {
                 myRef.child("canciones").child(cancion.getId()).child("votos").setValue(cancion.getVotos()+1);
+            }
+        });
+        holder.animationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.animationView.playAnimation();
             }
         });
     }
@@ -116,6 +123,8 @@ public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.Canc
         TextView tvNombreCancion, tvNombreAutor;
         TextView tvVotos;
         ImageView imgLike;
+        LottieAnimationView animationView;
+
 
         public CancionesViewHolder(View itemView) {
             super(itemView);
@@ -124,6 +133,7 @@ public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.Canc
             tvNombreAutor = (TextView) itemView.findViewById(R.id.tvNombreAutor);
             tvVotos = (TextView) itemView.findViewById(R.id.tvVotos);
             imgLike = (ImageView) itemView.findViewById(R.id.imgLike);
+            animationView = (LottieAnimationView) itemView.findViewById(R.id.animation_view);
 
         }
     }
