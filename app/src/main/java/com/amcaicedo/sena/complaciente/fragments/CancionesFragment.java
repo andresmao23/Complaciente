@@ -142,14 +142,14 @@ public class CancionesFragment extends Fragment {
 
     private void addingNewCancionDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-        alertDialog.setTitle("Agregar nueva cancion");
+        alertDialog.setTitle("Agregar nueva canción");
 
         LinearLayout layout = new LinearLayout(getActivity());
         layout.setPadding(10, 10, 10, 10);
         layout.setOrientation(LinearLayout.VERTICAL);
 
         final EditText nombreCancion = new EditText(getActivity());
-        nombreCancion.setHint("Digite cancion");
+        nombreCancion.setHint("Digite canción");
         layout.addView(nombreCancion);
 
         final EditText nombreAutor = new EditText(getActivity());

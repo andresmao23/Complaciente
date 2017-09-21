@@ -20,4 +20,7 @@
     <color name="nav_subheader_txt">#0288D1</color>
     <color name="nav_subheader_divisor">#0288D1</color>
 
+    <color name="color_fondo_gris_oscuro">#303030</color>
+    <color name="color_fondo_gris_claro">#464e4e</color>
+
 </resources>
