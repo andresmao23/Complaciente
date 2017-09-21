@@ -16,10 +16,12 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -178,6 +182,7 @@ public class SaludosFragment extends Fragment {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void addingNewSaludoDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         alertDialog.setTitle("Agregar nuevo saludo");
@@ -198,13 +203,14 @@ public class SaludosFragment extends Fragment {
         detalleMensaje.setHint("Mensaje");
         layout.addView(detalleMensaje);
 
-        imgFoto = new ImageView(getActivity());
-        imgFoto.setMaxHeight(100);
-        imgFoto.setMaxWidth(200);
-        layout.addView(imgFoto);
+        final ImageButton tvFoto = new ImageButton(getActivity());
+        tvFoto.setBackgroundResource(R.drawable.camera);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        tvFoto.setLayoutParams(params);
+        tvFoto.setScaleType(ImageView.ScaleType.CENTER);
 
-        final TextView tvFoto = new TextView(getActivity());
-        tvFoto.setText("Subir foto");
+        /*final TextView tvFoto = new TextView(getActivity());
+        tvFoto.setText("Subir foto");*/
         tvFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,6 +218,11 @@ public class SaludosFragment extends Fragment {
             }
         });
         layout.addView(tvFoto);
+
+        imgFoto = new ImageView(getActivity());
+        imgFoto.setMaxHeight(100);
+        imgFoto.setMaxWidth(150);
+        layout.addView(imgFoto);
 
         alertDialog.setView(layout);
 

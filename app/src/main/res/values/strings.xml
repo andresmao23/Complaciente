@@ -17,4 +17,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_interstitial_id">ca-app-pub-8120011798224613/2943092570</string>
 </resources>

@@ -14,7 +14,7 @@
     <application
         android:name=".BeaconNotification"
         android:allowBackup="true"
-        android:icon="@drawable/pruebados"
+        android:icon="@drawable/ic_pander"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

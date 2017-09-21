@@ -31,6 +31,11 @@ import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
 import com.estimote.sdk.SystemRequirementsChecker;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
@@ -59,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     SwipeRefreshLayout refresh;
     List<Promocion> data;
+
+    InterstitialAd mInterstitialAd;
+    private InterstitialAd interstitial;
 
     private static final Map<String, List<String>> PLACES_BY_BEACONS;
 
@@ -154,6 +162,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         region = new Region("ranged region", UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D"), null, null);
 
+
+        // Intersticial AdMob
+        AdView mAdView = new AdView(this);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.setAdSize(AdSize.BANNER);
+        mAdView.setAdUnitId(getString(R.string.admob_interstitial_id));
+        mAdView.loadAd(adRequest);
+
+        // Prepare the Interstitial Ad
+        interstitial = new InterstitialAd(MainActivity.this);
+        // Insert the Ad Unit ID
+        interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
+
+        interstitial.loadAd(adRequest);
+        // Prepare an Interstitial Ad Listener
+        interstitial.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                // Call displayInterstitial() function
+                displayInterstitial();
+            }
+        });
+
+
+    }
+
+    public void displayInterstitial() {
+        // If Ads are loaded, show Interstitial else show nothing.
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+        }
     }
 
     @Override
