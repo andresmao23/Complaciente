@@ -1,6 +1,7 @@
 package com.amcaicedo.sena.complaciente;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,9 @@ import com.amcaicedo.sena.complaciente.fragments.CancionesFragment;
 import com.amcaicedo.sena.complaciente.fragments.HomeFragment;
 import com.amcaicedo.sena.complaciente.fragments.SaludosFragment;
 import com.amcaicedo.sena.complaciente.models.Promocion;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.BottomBarBadge;
+import com.roughike.bottombar.OnMenuTabClickListener;
 
 public class FragmentContentNavigationActivity extends AppCompatActivity {
 

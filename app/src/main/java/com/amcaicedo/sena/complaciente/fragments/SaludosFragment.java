@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -25,6 +26,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +58,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -100,6 +103,8 @@ public class SaludosFragment extends Fragment {
     //private Uri imgDescarga;
 
     Uri path;
+
+    Bitmap bitmap;
 
 
     public SaludosFragment() {
@@ -428,9 +433,11 @@ public class SaludosFragment extends Fragment {
                             });
 
 
-                    Bitmap bitmap = BitmapFactory.decodeFile(mPath);
+                    bitmap = BitmapFactory.decodeFile(mPath);
                     imgFoto.setImageBitmap(bitmap);
                     //path = Uri.parse(mPath);
+                    //mPath = convertirImgString(bitmap);
+                    //Log.e("RUTA NUEVA", mPath);
                     File newFile = new File(mPath);
                     path = FileProvider.getUriForFile(getActivity(), "com.amcaicedo.sena.complaciente.FragmentContentActivity", newFile);
                     Log.e("Ruta de la foto CAMARA", String.valueOf(path));
@@ -439,10 +446,42 @@ public class SaludosFragment extends Fragment {
                     path = data.getData();
                     Log.e("Ruta de la foto", String.valueOf(path));
                     imgFoto.setImageURI(path);
-                    break;
 
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), path);
+                        imgFoto.setImageBitmap(bitmap);
+                    }catch (IOException e){
+                        e.printStackTrace();;
+                    }
+                    break;
             }
+            bitmap = redimensionarImagen(bitmap, 800, 600);
         }
+    }
+
+    private Bitmap redimensionarImagen(Bitmap bitmap, float anchoNuevo, float altoNuevo){
+        int ancho = bitmap.getWidth();
+        int alto = bitmap.getHeight();
+        if (ancho > anchoNuevo || alto > altoNuevo){
+            float escalaAncho = anchoNuevo/ancho;
+            float escalaAlto = altoNuevo/alto;
+
+            Matrix matrix = new Matrix();
+            matrix.postScale(escalaAncho, escalaAlto);
+            return Bitmap.createBitmap(bitmap, 0, 0, ancho, alto, matrix, false);
+        }else{
+            return bitmap;
+        }
+    }
+
+    private String convertirImgString(Bitmap bitmap) {
+
+        ByteArrayOutputStream array=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,array);
+        byte[] imagenByte=array.toByteArray();
+        String imagenString= Base64.encodeToString(imagenByte,Base64.DEFAULT);
+
+        return imagenString;
     }
 
     @Override
