@@ -3,7 +3,8 @@
     <item
         android:id="@+id/navInicio"
         android:title="Inicio"
-        android:icon="@mipmap/ic_home"/>
+        android:icon="@mipmap/ic_home"
+        />
     <item
         android:id="@+id/navCanciones"
         android:title="Canciones"

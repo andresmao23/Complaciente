@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_small"
-        app:cardElevation="7dp"
-        app:cardCornerRadius="10dp">
+        app:cardElevation="10dp"
+        app:cardCornerRadius="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -20,6 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nombre de la canción"
+                android:gravity="center"
                 android:textStyle="bold"
                 android:textSize="@dimen/nombre_cancion"
                 android:padding="@dimen/padding_small"/>
@@ -29,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nombre de la canción"
+                android:gravity="center"
                 android:textSize="@dimen/nombre_autor"
                 android:layout_below="@id/tvNombreCancion"
                 android:padding="@dimen/padding_small"/>
@@ -43,18 +45,19 @@
                     android:id="@+id/tvVotos"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Votos"
-                    android:textSize="@dimen/nombre_autor"
                     android:layout_below="@id/tvNombreAutor"
-                    android:padding="@dimen/padding_small"/>
+                    android:layout_weight="4"
+                    android:padding="@dimen/padding_small"
+                    android:text="  Votos"
+                    android:textSize="@dimen/nombre_cancion"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/imgLike"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_like"/>
+                    android:layout_weight="2"
+                    android:src="@mipmap/ic_like2"/>
 
             </LinearLayout>
 

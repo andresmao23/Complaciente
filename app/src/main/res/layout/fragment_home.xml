@@ -1,10 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:design="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:design="http://schemas.android.com/apk/res-auto"
-    android:background="#DFDBDB"
+    android:background="@drawable/fondo_grises"
     tools:context="com.amcaicedo.sena.complaciente.fragments.HomeFragment">
 
     <android.support.design.widget.CoordinatorLayout
@@ -16,8 +16,8 @@
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            >
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,50 +28,104 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/padding_small"
                     android:layout_margin="@dimen/padding_small"
-                    >
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
+                    android:padding="@dimen/padding_small"
+                    app:cardBackgroundColor="@color/color_fondo_gris_oscuro"
+                    app:cardCornerRadius="@dimen/esquinas_cuadradas"
+                    app:cardElevation="7dp"
 
-                        <TextView
-                            android:id="@+id/titulo"
-                            style="@style/Base.TextAppearance.AppCompat.Display1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Título"
-                            />
+
+                    >
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/bar"
                             style="@style/Base.TextAppearance.AppCompat.Display1"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_horizontal|center"
+                            android:padding="@dimen/padding_small"
+                            android:shadowColor="@color/primary_text"
+                            android:shadowDx="5"
+                            android:shadowDy="4"
+                            android:shadowRadius="3.8"
+                            android:singleLine="true"
                             android:text="Nombre del bar"
-                            android:layout_below="@id/titulo"
-                            />
+                            android:textColor="@color/color_texto_titulo"
+                            android:textSize="30sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    </RelativeLayout>
+                        <TextView
+
+                            android:id="@+id/titulo"
+                            style="@style/Base.TextAppearance.AppCompat.Display1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="0dp"
+                            android:padding="@dimen/padding_small"
+                            android:paddingLeft="10dp"
+                            android:shadowColor="@color/colorPrimary"
+                            android:shadowDx="2"
+                            android:shadowDy="1"
+                            android:shadowRadius="1.8"
+                            android:singleLine="true"
+                            android:text="Titutlo"
+                            android:textColor="@color/color_fondo_gris_claro"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/bar"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                    </android.support.constraint.ConstraintLayout>
                 </android.support.v7.widget.CardView>
+
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_small"
+                    android:padding="@dimen/padding_small"
+                    app:cardBackgroundColor="@color/color_fondo_gris_oscuro"
+                    app:cardCornerRadius="@dimen/esquinas_cuadradas"
 
-                    android:layout_marginLeft="@dimen/padding_small"
-                    android:layout_marginRight="@dimen/padding_small"
-                    android:layout_marginBottom="@dimen/padding_small"
+
                     >
 
                     <TextView
-                        style="@style/TextAppearance.AppCompat.Body2"
                         android:id="@+id/content"
-                        android:padding="@dimen/padding_small"
+                        style="@style/TextAppearance.AppCompat.Body2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_medium"
+                        android:paddingLeft="20dp"
+                        android:shadowColor="@color/primary_text"
+                        android:shadowDx="4"
+                        android:shadowDy="3"
+                        android:shadowRadius="2.8"
                         android:text="Contenido"
+                        android:textColor="@color/cardview_light_background"
+                        android:textSize="15sp"
+                        app:cardElevation="7dp"
                         />
 
                 </android.support.v7.widget.CardView>
@@ -84,37 +138,39 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            >
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collapsingToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed"
                 app:contentScrim="@color/colorPrimary"
-                >
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/mask_dark"
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax"
-                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                    android:background="@drawable/mask_dark"
-                    />
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
+
                 <ImageView
                     android:id="@+id/img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax"
-                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                    />
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
+
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/abc_action_bar_default_height_material"
                     app:layout_collapseMode="pin"
+                    tools:ignore="PrivateResource"
+                    android:title="Bienvenido"
+                    android:elevation="7dp"
                     />
 
             </android.support.design.widget.CollapsingToolbarLayout>

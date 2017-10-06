@@ -54,9 +54,9 @@ public class SaludoAdapter extends RecyclerView.Adapter<SaludoAdapter.SaludoView
     @Override
     public void onBindViewHolder(SaludoViewHolder holder, int position) {
         final Saludo saludo = saludos.get(position);
-        holder.tvNombreEmisor.setText("De: " + saludo.getEmisor());
-        holder.tvNombreReceptor.setText("Para: " + saludo.getReceptor());
-        holder.tvDetalleMensaje.setText("Mensaje: " + saludo.getDetalle());
+        holder.tvNombreEmisor.setText(saludo.getEmisor());
+        holder.tvNombreReceptor.setText(saludo.getReceptor());
+        holder.tvDetalleMensaje.setText(saludo.getDetalle());
         //Log.e("URI DESCARGA", saludo.getUrl());
         //holder.img.setImageURI(Uri.parse(saludo.getUri()));
         if(saludo.getUrl() == null)
