@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -49,6 +51,9 @@ public class CancionesFragment extends Fragment {
     String firebase_reference;
 
     ProgressDialog progressDialog;
+
+    private ArrayList<String> titulosCanciones = new ArrayList<>();
+    private ArrayList<String> titulosAutores = new ArrayList<>();
 
     public CancionesFragment() {
         // Required empty public constructor
@@ -148,13 +153,27 @@ public class CancionesFragment extends Fragment {
         layout.setPadding(10, 10, 10, 10);
         layout.setOrientation(LinearLayout.VERTICAL);
 
-        final EditText nombreCancion = new EditText(getActivity());
+        final AutoCompleteTextView nombreCancion = new AutoCompleteTextView(getActivity());
+        nombreCancion.setHint("Digite canción");
+        nombreCancion.setThreshold(2);
+        ArrayAdapter<String> titulosCancionesAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, titulosCanciones);
+        nombreCancion.setAdapter(titulosCancionesAdapter);
+        layout.addView(nombreCancion);
+
+        final AutoCompleteTextView nombreAutor = new AutoCompleteTextView(getActivity());
+        nombreAutor.setHint("Digite Autor");
+        nombreAutor.setThreshold(2);
+        ArrayAdapter<String> titulosAutoresAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, titulosAutores);
+        nombreAutor.setAdapter(titulosAutoresAdapter);
+        layout.addView(nombreAutor);
+
+        /*final EditText nombreCancion = new EditText(getActivity());
         nombreCancion.setHint("Digite canción");
         layout.addView(nombreCancion);
 
         final EditText nombreAutor = new EditText(getActivity());
         nombreAutor.setHint("Digite Autor");
-        layout.addView(nombreAutor);
+        layout.addView(nombreAutor);*/
 
         alertDialog.setView(layout);
 
@@ -164,7 +183,15 @@ public class CancionesFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 Cancion cancion = new Cancion();
                 cancion.setNombre(nombreCancion.getText().toString());
+                if (!titulosCanciones.contains(nombreCancion.getText().toString())){
+                    titulosCanciones.add(nombreCancion.getText().toString());
+                    System.out.print("TITULOS CANCIONES: " + titulosCanciones);
+                }
                 cancion.setAutor(nombreAutor.getText().toString());
+                if (!titulosAutores.contains(nombreAutor.getText().toString())){
+                    titulosAutores.add(nombreAutor.getText().toString());
+                    System.out.print("TITULOS AUTORES: " + titulosAutores);
+                }
                 cancion.setVotos(0);
                 String id = myRef.child("canciones").push().getKey();
                 cancion.setId(id);
