@@ -5,6 +5,8 @@ import android.content.Context;
 import com.orm.SugarContext;
 import com.orm.SugarRecord;
 
+import java.util.List;
+
 /**
  * Created by asus on 24/05/2017.
  */
@@ -83,4 +85,15 @@ public class Promocion extends SugarRecord{
         }
     }
     //endregion
+
+    public static Promocion findPromocionByBar(String bar){
+        Promocion promocion = null;
+
+        List<Promocion> result = find(Promocion.class, "bar = ?", bar);
+
+        if(result.size()>0)
+            promocion = result.get(0);
+
+        return promocion;
+    }
 }

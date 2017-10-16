@@ -105,12 +105,12 @@ public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.Canc
                 myRef.child("canciones").child(cancion.getId()).child("votos").setValue(cancion.getVotos()+1);
             }
         });
-        holder.animationView.setOnClickListener(new View.OnClickListener() {
+        /*holder.animationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.animationView.playAnimation();
             }
-        });
+        });*/
     }
 
     @Override
@@ -124,7 +124,7 @@ public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.Canc
         TextView tvNombreCancion, tvNombreAutor;
         TextView tvVotos;
         ImageView imgLike;
-        LottieAnimationView animationView;
+        //LottieAnimationView animationView;
 
 
         public CancionesViewHolder(View itemView) {
@@ -134,7 +134,7 @@ public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.Canc
             tvNombreAutor = (TextView) itemView.findViewById(R.id.tvNombreAutor);
             tvVotos = (TextView) itemView.findViewById(R.id.tvVotos);
             imgLike = (ImageView) itemView.findViewById(R.id.imgLike);
-            animationView = (LottieAnimationView) itemView.findViewById(R.id.animation_view);
+            //animationView = (LottieAnimationView) itemView.findViewById(R.id.animation_view);
 
         }
     }

@@ -1,5 +1,6 @@
 package com.amcaicedo.sena.complaciente;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -9,17 +10,22 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +53,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener, PromoAdapter.OnItemClick {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener, PromoAdapter.OnItemClick, SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener {
     ImageView usrImg, bannerImg;
     TextView usrTxt;
 
@@ -283,4 +289,77 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onPause();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.buscador, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.menu_buscador);
+
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
+
+        MenuItemCompat.setOnActionExpandListener(searchItem, this);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Promocion promocion;
+        if(Promocion.findPromocionByBar(query) != null){
+            promocion = Promocion.findPromocionByBar(query);
+
+            mostrarDatosBar(promocion);
+        }else
+            Toast.makeText(getApplicationContext(), "No hay datos del bar: " + query, Toast.LENGTH_SHORT).show();
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
+
+    private void mostrarDatosBar(final Promocion promocion) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Bar encontrado");
+
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        final TextView nombreBar = new TextView(this);
+        nombreBar.setPadding(30, 10, 0, 0);
+        nombreBar.setTextSize(30);
+        nombreBar.setText(promocion.getBar());
+        layout.addView(nombreBar);
+
+        alertDialog.setView(layout);
+
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(MainActivity.this, FragmentContentNavigationActivity.class);
+                intent.putExtra(FragmentContentNavigationActivity.KEY_ID, promocion.getId());
+                intent.putExtra("FIREBASE_REFERENCE", promocion.getBar());
+                startActivity(intent);
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancelar", null);
+
+        //show alert
+        alertDialog.show();
+    }
+
+    @Override
+    public boolean onMenuItemActionExpand(MenuItem item) {
+        Toast.makeText(getApplicationContext(), "Buscador activado", Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemActionCollapse(MenuItem item) {
+        Toast.makeText(getApplicationContext(), "Buscador desactivado", Toast.LENGTH_SHORT).show();
+        return true;
+    }
 }
