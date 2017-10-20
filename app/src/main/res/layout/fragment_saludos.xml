@@ -17,11 +17,10 @@
         android:id="@+id/fabAgregarSaludosFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="6dp"
         android:layout_gravity="bottom|right"
         app:fabSize="normal"
         android:src="@mipmap/ic_agregar"
-        app:pressedTranslationZ="5dp"
+        app:pressedTranslationZ="7dp"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"/>
 

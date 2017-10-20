@@ -1,5 +1,10 @@
 package com.amcaicedo.sena.complaciente;
 
+/**
+ * Created by J.L. Daniel on 28/08/2017.
+ */
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;

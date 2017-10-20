@@ -122,7 +122,7 @@ public class CancionesFragment extends Fragment {
             }
         });
 
-        reciclerCancionesFragment.addOnScrollListener(new RecyclerView.OnScrollListener(){
+        /*reciclerCancionesFragment.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -140,7 +140,7 @@ public class CancionesFragment extends Fragment {
                             .setInterpolator(new LinearInterpolator())
                             .setDuration(1000); // Cambiar al tiempo deseado
             }
-        });
+        });*/
 
         return v;
     }

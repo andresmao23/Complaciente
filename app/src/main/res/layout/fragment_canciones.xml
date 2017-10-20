@@ -17,7 +17,7 @@
         android:id="@+id/fabAgregarCancionesFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="6dp"
+        android:elevation="9dp"
         android:layout_gravity="bottom|right"
         app:fabSize="normal"
         android:src="@mipmap/ic_agregar"

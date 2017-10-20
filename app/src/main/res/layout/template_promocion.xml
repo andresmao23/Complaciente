@@ -1,54 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    app:cardBackgroundColor="@color/color_fondo_gris_oscuro"
+    app:cardCornerRadius="@dimen/esquinas_cuadradas"
+    app:cardElevation="9dp"
+    app:contentPadding="2dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintHorizontal_bias="0.523"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0">
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_small"
-        app:cardElevation="7dp"
-        app:cardCornerRadius="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="81dp">
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/template_img_height"
-            android:scaleType="centerCrop"
+            android:layout_width="330dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="8dp"
             android:background="#777777"
-            />
+            android:scaleType="centerCrop"
+            app:layout_constraintRight_toRightOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/template_img_height"
+            android:id="@+id/imageView"
+            android:layout_width="330dp"
+            android:layout_height="110dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/mask_dark"
-            />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title"
             style="@style/Base.TextAppearance.AppCompat.Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding_small"
-            android:textColor="#ffffff"
-            android:text="Titulo"
+            android:layout_width="330dp"
+            android:layout_height="39dp"
             android:layout_alignBottom="@id/img"
+            android:layout_marginLeft="0dp"
+            android:background="@color/gris_trasparencia"
+            android:duplicateParentState="false"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="Titulo"
+            android:textColor="@color/colorAccentDark"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.518"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView"
+            app:layout_constraintRight_toRightOf="@+id/img"
+            android:shadowColor="@color/color_fondo_gris_oscuro"
+            android:shadowDx="3"
+            android:shadowDy="2"
+            android:shadowRadius="1.8"
             />
 
         <TextView
-            style="@style/Base.TextAppearance.AppCompat.Title"
             android:id="@+id/bar"
-            android:padding="@dimen/padding_small"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nombre del bar"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="329dp"
+            android:layout_height="40dp"
             android:layout_below="@id/img"
-            />
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:paddingLeft="10dp"
+            android:text="Nombre del bar"
+            android:textColor="@color/color_texto_titulo"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/imageView"
+            app:layout_constraintRight_toRightOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.0"
+            android:shadowColor="@color/colorPrimaryDark"
+            android:shadowDx="3"
+            android:shadowDy="2"
+            android:shadowRadius="1.8"
+            android:textSize="30sp"/>
 
         <!--TextView
             style="@style/Base.TextAppearance.AppCompat.Body1"
@@ -59,7 +109,6 @@
             android:text="Descripcion de la promocion"
             android:layout_below="@id/bar"/-->
 
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
 
-</LinearLayout>
