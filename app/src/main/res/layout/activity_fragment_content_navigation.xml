@@ -19,7 +19,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/color_fondo_gris_claro"
+        app:itemTextColor="@color/nav_item_text"
         app:menu="@menu/bottom_navigation_view" />
 
 </LinearLayout>
+<!--
+    //?android:attr/windowBackground-->

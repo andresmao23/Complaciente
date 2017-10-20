@@ -381,7 +381,6 @@ public class SaludosFragment extends Fragment {
         }catch (Exception e){
             Log.e("Excepcion de camara", e.getMessage());
         }
-
     }
 
     @Override

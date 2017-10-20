@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.amcaicedo.sena.complaciente.fragments.CancionesFragment;
@@ -51,10 +52,8 @@ public class FragmentContentNavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_content_navigation);
-
         extras = getIntent().getExtras();
         nombreBar = extras.getString("FIREBASE_REFERENCE");
-
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, new HomeFragment()).commit();

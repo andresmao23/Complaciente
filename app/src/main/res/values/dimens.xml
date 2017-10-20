@@ -8,6 +8,8 @@
     <dimen name="padding_medium">20dp</dimen>
     <dimen name="header_img">60dp</dimen>
     <dimen name="template_img_height">140dp</dimen>
-    <dimen name="nombre_cancion">30sp</dimen>
-    <dimen name="nombre_autor">20sp</dimen>
-</resources>
+    <dimen name="nombre_cancion">25sp</dimen>
+    <dimen name="nombre_autor">15sp</dimen>
+    <dimen name="esquinas_redondeadas">10dp</dimen>
+    <dimen name="esquinas_cuadradas">6dp</dimen>
+    </resources>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">-->
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    app:cardBackgroundColor="@color/color_fondo_gris_oscuro"
+    app:cardCornerRadius="@dimen/esquinas_cuadradas"
+    app:cardElevation="9dp"
+    app:contentPadding="2dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintHorizontal_bias="0.523"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="81dp">
+
+        <!--<android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/padding_small"
+                        app:cardElevation="10dp"
+                        app:cardCornerRadius="20dp">-->
+
+
+        <TextView
+            android:id="@+id/tvNombreCancion"
+            android:layout_width="323dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="8dp"
+            android:autoSizeTextType="uniform"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingLeft="10dp"
+            android:scrollHorizontally="true"
+            android:shadowColor="@color/primary_text"
+            android:shadowDx="5"
+            android:shadowDy="4"
+            android:shadowRadius="3.8"
+            android:singleLine="true"
+            android:text="Nombre de la canción"
+            android:textColor="@color/color_texto_titulo"
+            android:textSize="@dimen/nombre_cancion"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNombreAutor"
+            android:layout_width="200dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="0dp"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingLeft="10dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="Nombre del autor"
+            android:textColor="@color/color_texto_cuerpo"
+            android:textSize="@dimen/nombre_autor"
+            app:layout_constraintLeft_toLeftOf="@+id/tvNombreCancion"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreCancion"
+            android:shadowColor="@color/primary_text"
+            android:shadowDx="4"
+            android:shadowDy="3"
+            android:shadowRadius="2.8"
+            />
+
+
+        <ImageView
+            android:id="@+id/imgLike"
+            android:layout_width="72dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="-12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="@+id/imgEcualizador"
+            app:layout_constraintLeft_toRightOf="@+id/imgEcualizador"
+            app:layout_constraintRight_toRightOf="@+id/tvNombreCancion"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreAutor"
+            app:layout_constraintVertical_bias="0.076"
+            app:srcCompat="@drawable/icono_like_dos" />
+
+        <ImageView
+            android:id="@+id/imgEcualizador"
+            android:layout_width="132dp"
+            android:layout_height="90dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/icono_cancion"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/tvNombreAutor"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreAutor"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/icono_cancion"
+            app:layout_constraintHorizontal_bias="0.508" />
+
+        <TextView
+            android:id="@+id/tvVotos"
+            android:layout_width="111dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="Votos"
+            android:textColor="@color/nav_item_text"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imgEcualizador"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintLeft_toLeftOf="@+id/imgEcualizador"
+            app:layout_constraintRight_toRightOf="@+id/imgEcualizador"
+            app:layout_constraintTop_toTopOf="@+id/imgEcualizador"
+            tools:layout_constraintBottom_creator="1"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="80dp"
+            android:shadowColor="@color/colorAccentDark"
+            android:shadowDx="3"
+            android:shadowDy="2"
+            android:shadowRadius="1.8"
+            />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintLeft_toRightOf="@+id/imgEcualizador"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreCancion"
+            app:lottie_fileName="thumb_up.json"
+            app:lottie_loop="false"
+            app:lottie_autoPlay="false"
+            app:lottie_cacheStrategy="strong"
+            app:lottie_imageAssetsFolder="thumb_up.json"
+android:visibility="gone"
+            android:onClick="onClick"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView><!--
+        </android.support.v7.widget.CardView>--><!--  </android.support.constraint.ConstraintLayout>-->
+
+
