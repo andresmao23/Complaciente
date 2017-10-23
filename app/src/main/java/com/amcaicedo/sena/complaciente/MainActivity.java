@@ -33,6 +33,7 @@ import com.amcaicedo.sena.complaciente.Util.AppUtil;
 import com.amcaicedo.sena.complaciente.adapters.PromoAdapter;
 import com.amcaicedo.sena.complaciente.fragments.HomeFragment;
 import com.amcaicedo.sena.complaciente.models.Promocion;
+import com.amcaicedo.sena.complaciente.services.BeaconService;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     InterstitialAd mInterstitialAd;
     private InterstitialAd interstitial;
 
-    private static final Map<String, List<String>> PLACES_BY_BEACONS;
+    /*private static final Map<String, List<String>> PLACES_BY_BEACONS;
 
     // TODO: replace "<major>:<minor>" strings to match your own beacons.
     static {
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private BeaconManager beaconManager;
-    private Region region;
+    private Region region;*/
 
 
 
@@ -116,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Promocion.init(this);
+
+        startService(new Intent(getApplicationContext(), BeaconService.class));
 
         list = (RecyclerView) findViewById(R.id.list);
         data = Promocion.listAll(Promocion.class);
@@ -154,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Picasso.with(this).load(uriBanner).into(bannerImg);
 
 
-        beaconManager = new BeaconManager(this);
+        /*beaconManager = new BeaconManager(this);
         beaconManager.setRangingListener(new BeaconManager.RangingListener() {
             @Override
             public void onBeaconsDiscovered(Region region, List<Beacon> list) {
@@ -166,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-        region = new Region("ranged region", UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D"), null, null);
+        region = new Region("ranged region", UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D"), null, null);*/
 
 
         // Intersticial AdMob
@@ -272,19 +275,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
 
-        beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
+        /*beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
             @Override
             public void onServiceReady() {
                 beaconManager.startRanging(region);
             }
-        });
+        });*/
 
     }
 
     @Override
     protected void onPause() {
 
-        beaconManager.stopRanging(region);
+        //beaconManager.stopRanging(region);
 
         super.onPause();
     }
