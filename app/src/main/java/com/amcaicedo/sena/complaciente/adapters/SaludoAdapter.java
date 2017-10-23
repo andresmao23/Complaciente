@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -58,18 +60,35 @@ public class SaludoAdapter extends RecyclerView.Adapter<SaludoAdapter.SaludoView
         holder.tvNombreEmisor.setText(saludo.getEmisor());
         holder.tvNombreReceptor.setText(saludo.getReceptor());
         holder.tvDetalleMensaje.setText(saludo.getDetalle());
+        if (saludo.getUrl() == null)
+            Glide.with(context).load(R.drawable.discoteca).fitCenter().centerCrop().into(holder.img);
+        else{
+            Bitmap bitmap = stringToBitmap(saludo.getUrl());
+            holder.img.setImageBitmap(bitmap);
+        }
 
         //Log.e("URI DESCARGA", saludo.getUrl());
         //holder.img.setImageURI(Uri.parse(saludo.getUri()));
-        if(saludo.getUrl() == null)
+        /*if(saludo.getUrl() == null)
             Glide.with(context).load(R.drawable.discoteca).fitCenter().centerCrop().into(holder.img);
         else
-            Glide.with(context).load(saludo.getUrl()).fitCenter().centerCrop().into(holder.img);
+            Glide.with(context).load(saludo.getUrl()).fitCenter().centerCrop().into(holder.img);*/
     }
 
     @Override
     public int getItemCount() {
         return saludos.size();
+    }
+
+    private Bitmap stringToBitmap(String encodedString){
+        try {
+            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 
     public static class SaludoViewHolder extends RecyclerView.ViewHolder {

@@ -104,7 +104,7 @@ public class SaludosFragment extends Fragment {
 
     Uri path;
 
-    Bitmap bitmap;
+    Bitmap bitmap = null;
 
 
     public SaludosFragment() {
@@ -179,7 +179,9 @@ public class SaludosFragment extends Fragment {
         fabAgregarSaludoFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addingNewSaludoDialog();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    addingNewSaludoDialog();
+                }
             }
         });
 
@@ -246,7 +248,26 @@ public class SaludosFragment extends Fragment {
                 progressDialog.setCancelable(false);
                 progressDialog.show();
 
-                if(path != null) {
+
+                // Modificacion
+                saludo.setEmisor(emisor.getText().toString());
+                saludo.setReceptor(receptor.getText().toString());
+                saludo.setDetalle(detalleMensaje.getText().toString());
+                if (bitmap != null){
+                    String urlBitmap = convertirImgString(bitmap);
+                    Log.e("URL BITMAP", urlBitmap);
+                    saludo.setUrl(urlBitmap);
+                }
+
+                Toast.makeText(getActivity(), "Foto subida exitosamente", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+                String id = myRef.child("canciones").push().getKey();
+                myRef.child("saludos").child(id).setValue(saludo);
+                path = null; // Reseteamos la variabe path
+                bitmap = null; // Reseteamos la variabe bitmap
+
+
+                /*if(path != null) {
                     StorageReference filePath = storage.child("fotos").child(path.getLastPathSegment());
                     filePath.putFile(path).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -279,7 +300,8 @@ public class SaludosFragment extends Fragment {
                     String id = myRef.child("canciones").push().getKey();
                     myRef.child("saludos").child(id).setValue(saludo);
                     progressDialog.dismiss();
-                }
+                }*/
+
                 /*saludo.setUrl(String.valueOf(imgDescarga[0]));
 
                 String id = myRef.child("canciones").push().getKey();
