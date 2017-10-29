@@ -253,18 +253,22 @@ public class SaludosFragment extends Fragment {
                 saludo.setEmisor(emisor.getText().toString());
                 saludo.setReceptor(receptor.getText().toString());
                 saludo.setDetalle(detalleMensaje.getText().toString());
-                if (bitmap != null){
-                    String urlBitmap = convertirImgString(bitmap);
-                    Log.e("URL BITMAP", urlBitmap);
-                    saludo.setUrl(urlBitmap);
-                }
+                try {
+                    if (bitmap != null) {
+                        String urlBitmap = convertirImgString(bitmap);
+                        Log.e("URL BITMAP", urlBitmap);
+                        saludo.setUrl(urlBitmap);
+                    }
 
-                Toast.makeText(getActivity(), "Foto subida exitosamente", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-                String id = myRef.child("canciones").push().getKey();
-                myRef.child("saludos").child(id).setValue(saludo);
-                path = null; // Reseteamos la variabe path
-                bitmap = null; // Reseteamos la variabe bitmap
+                    Toast.makeText(getActivity(), "Foto subida exitosamente", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    String id = myRef.child("canciones").push().getKey();
+                    myRef.child("saludos").child(id).setValue(saludo);
+                    path = null; // Reseteamos la variabe path
+                    bitmap = null; // Reseteamos la variabe bitmap
+                }catch (OutOfMemoryError ome){
+                    Toast.makeText(getActivity(), "No se puede enviar el saludo!", Toast.LENGTH_SHORT).show();
+                }
 
 
                 /*if(path != null) {
