@@ -20,4 +20,40 @@
 
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_interstitial_id">ca-app-pub-8120011798224613/2943092570</string>
+
+    <string-array name="lista_canciones">
+        <item>El muelle de San Blass</item>
+        <item>Felices los 4</item>
+        <item>Mariposa traicionera</item>
+        <item>Fanatica</item>
+        <item>Flor palida</item>
+        <item>El cantante</item>
+        <item>Dile</item>
+        <item>Kripy cush</item>
+        <item>Eres</item>
+        <item>Criminal</item>
+        <item>Bonita</item>
+        <item>Hey Ma</item>
+    </string-array>
+
+    <string-array name="lista_autores">
+        <item>Mana</item>
+        <item>Maluma</item>
+        <item>Mark Antony</item>
+        <item>J-Balvin</item>
+        <item>Nicky Jam</item>
+        <item>Bad Bunny</item>
+        <item>Arcangel</item>
+        <item>Karoll-G</item>
+        <item>Martina la peligrosa</item>
+        <item>Mr Black</item>
+        <item>Sebastian Yatra</item>
+        <item>Michael Jackson</item>
+        <item>Tony Vega</item>
+        <item>Jowell y Randy</item>
+        <item>Carlos Vives</item>
+        <item>Shakira</item>
+        <item>Willie Gonzales</item>
+    </string-array>
+
 </resources>

@@ -18,11 +18,14 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.amcaicedo.sena.complaciente.CancionesActivity;
 import com.amcaicedo.sena.complaciente.R;
 import com.amcaicedo.sena.complaciente.adapters.CancionesAdapter;
 import com.amcaicedo.sena.complaciente.models.Cancion;
+import com.amcaicedo.sena.complaciente.retrofitmodels.Api;
+import com.amcaicedo.sena.complaciente.retrofitmodels.Autor;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +33,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,8 +62,8 @@ public class CancionesFragment extends Fragment {
 
     ProgressDialog progressDialog;
 
-    private ArrayList<String> titulosCanciones = new ArrayList<>();
-    private ArrayList<String> titulosAutores = new ArrayList<>();
+    private List<String> titulosCanciones = new ArrayList<>();
+    private List<String> titulosAutores = new ArrayList<>();
 
     public CancionesFragment() {
         // Required empty public constructor
@@ -65,6 +75,53 @@ public class CancionesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_canciones, container, false);
+
+        // Lista de canciones del recurso String-array
+        titulosCanciones = Arrays.asList(getResources().getStringArray(R.array.lista_canciones));
+        // Lista de autores del recurso String-array
+        titulosAutores = Arrays.asList(getResources().getStringArray(R.array.lista_autores));
+
+        // Modificacion para uso de Retrofit web service
+        /*Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api api = retrofit.create(Api.class);
+        Call<List<Autor>> call = api.getAutores();
+        call.enqueue(new Callback<List<Autor>>() {
+            @Override
+            public void onResponse(Call<List<Autor>> call, Response<List<Autor>> response) {
+                List<Autor> autores = response.body();
+                for(Autor a: autores){
+                    Log.e("NOMBRE DEL AUTOR", a.getNombre());
+                    titulosAutores.add(a.getNombre());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Autor>> call, Throwable t) {
+                Toast.makeText(getContext(), "ERROR AL TRAER AUTORES RETROFIT" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Call<List<com.amcaicedo.sena.complaciente.retrofitmodels.Cancion>> callCanciones = api.getCanciones();
+        callCanciones.enqueue(new Callback<List<com.amcaicedo.sena.complaciente.retrofitmodels.Cancion>>() {
+            @Override
+            public void onResponse(Call<List<com.amcaicedo.sena.complaciente.retrofitmodels.Cancion>> call, Response<List<com.amcaicedo.sena.complaciente.retrofitmodels.Cancion>> response) {
+                List<com.amcaicedo.sena.complaciente.retrofitmodels.Cancion> canciones = response.body();
+                for(com.amcaicedo.sena.complaciente.retrofitmodels.Cancion c: canciones){
+                    Log.e("NOMBRE DE LA CANCION", c.getNombre());
+                    titulosCanciones.add(c.getNombre());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<com.amcaicedo.sena.complaciente.retrofitmodels.Cancion>> call, Throwable t) {
+                Toast.makeText(getContext(), "ERROR AL TRAER CANCIONES RETROFIT" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });*/
+        // Fin modificacion Retrofit web service
 
         extras = getActivity().getIntent().getExtras();
         firebase_reference = extras.getString("FIREBASE_REFERENCE");
@@ -155,14 +212,14 @@ public class CancionesFragment extends Fragment {
 
         final AutoCompleteTextView nombreCancion = new AutoCompleteTextView(getActivity());
         nombreCancion.setHint("Digite canción");
-        nombreCancion.setThreshold(2);
+        nombreCancion.setThreshold(1);
         ArrayAdapter<String> titulosCancionesAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, titulosCanciones);
         nombreCancion.setAdapter(titulosCancionesAdapter);
         layout.addView(nombreCancion);
 
         final AutoCompleteTextView nombreAutor = new AutoCompleteTextView(getActivity());
         nombreAutor.setHint("Digite Autor");
-        nombreAutor.setThreshold(2);
+        nombreAutor.setThreshold(1);
         ArrayAdapter<String> titulosAutoresAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, titulosAutores);
         nombreAutor.setAdapter(titulosAutoresAdapter);
         layout.addView(nombreAutor);
