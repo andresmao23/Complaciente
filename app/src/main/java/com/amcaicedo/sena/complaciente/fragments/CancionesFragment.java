@@ -62,8 +62,8 @@ public class CancionesFragment extends Fragment {
 
     ProgressDialog progressDialog;
 
-    private List<String> titulosCanciones = new ArrayList<>();
-    private List<String> titulosAutores = new ArrayList<>();
+    private List<String> titulosCanciones = new ArrayList<String>();
+    private List<String> titulosAutores = new ArrayList<String>();
 
     public CancionesFragment() {
         // Required empty public constructor
@@ -238,17 +238,20 @@ public class CancionesFragment extends Fragment {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 Cancion cancion = new Cancion();
                 cancion.setNombre(nombreCancion.getText().toString());
-                if (!titulosCanciones.contains(nombreCancion.getText().toString())){
+                cancion.setAutor(nombreAutor.getText().toString());
+
+                /*if (!titulosCanciones.contains(nombreCancion.getText().toString())) {
                     titulosCanciones.add(nombreCancion.getText().toString());
                     System.out.print("TITULOS CANCIONES: " + titulosCanciones);
                 }
-                cancion.setAutor(nombreAutor.getText().toString());
-                if (!titulosAutores.contains(nombreAutor.getText().toString())){
+                if (!titulosAutores.contains(nombreAutor.getText().toString())) {
                     titulosAutores.add(nombreAutor.getText().toString());
                     System.out.print("TITULOS AUTORES: " + titulosAutores);
-                }
+                }*/
+
                 cancion.setVotos(0);
                 String id = myRef.child("canciones").push().getKey();
                 cancion.setId(id);

@@ -126,8 +126,9 @@ public class SaludosFragment extends Fragment {
         reciclerSaludosFragment = (RecyclerView) v.findViewById(R.id.reciclerSaludosFragment);
 
         LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
+        /*// Poner la pila alrevés para mostrar los saludos mas recientes de primero
         mManager.setReverseLayout(true);
-        mManager.setStackFromEnd(true);
+        mManager.setStackFromEnd(true);*/
 
         reciclerSaludosFragment.setLayoutManager(mManager);
 
