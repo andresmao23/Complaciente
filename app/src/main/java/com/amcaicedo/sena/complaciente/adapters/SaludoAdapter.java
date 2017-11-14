@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
@@ -66,6 +67,23 @@ public class SaludoAdapter extends RecyclerView.Adapter<SaludoAdapter.SaludoView
             Bitmap bitmap = stringToBitmap(saludo.getUrl());
             holder.img.setImageBitmap(bitmap);
         }
+
+        holder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                View v = LayoutInflater.from(context).inflate(R.layout.dialog_foto, null);
+                ImageView img = (ImageView) v.findViewById(R.id.imgFoto);
+                if (saludo.getUrl() == null)
+                    Glide.with(context).load(R.drawable.discoteca).fitCenter().centerCrop().into(img);
+                else{
+                    Bitmap bitmap = stringToBitmap(saludo.getUrl());
+                    img.setImageBitmap(bitmap);
+                }
+                builder.setView(v);
+                builder.show();
+            }
+        });
 
         //Log.e("URI DESCARGA", saludo.getUrl());
         //holder.img.setImageURI(Uri.parse(saludo.getUri()));
