@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -170,6 +171,12 @@ public class CancionesAdapter extends RecyclerView.Adapter<CancionesAdapter.Canc
 
 
         }
+    }
+
+    public void setFilter(ArrayList<Cancion> listaCanciones){
+        canciones = new ArrayList<Cancion>();
+        canciones.addAll(listaCanciones);
+        notifyDataSetChanged();
     }
 
 }

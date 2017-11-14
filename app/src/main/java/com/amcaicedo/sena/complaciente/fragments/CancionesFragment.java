@@ -4,13 +4,21 @@ package com.amcaicedo.sena.complaciente.fragments;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
@@ -26,6 +34,7 @@ import com.amcaicedo.sena.complaciente.adapters.CancionesAdapter;
 import com.amcaicedo.sena.complaciente.models.Cancion;
 import com.amcaicedo.sena.complaciente.retrofitmodels.Api;
 import com.amcaicedo.sena.complaciente.retrofitmodels.Autor;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +54,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CancionesFragment extends Fragment {
+public class CancionesFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -69,12 +78,19 @@ public class CancionesFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_canciones, container, false);
+
+        /*Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
+
+        //for crate home button
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(toolbar);
+        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
         // Lista de canciones del recurso String-array
         titulosCanciones = Arrays.asList(getResources().getStringArray(R.array.lista_canciones));
@@ -145,6 +161,7 @@ public class CancionesFragment extends Fragment {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
+        FirebaseApp.initializeApp(getActivity());
         database = FirebaseDatabase.getInstance();
 
         adapter = new CancionesAdapter(canciones, getActivity());
@@ -198,7 +215,6 @@ public class CancionesFragment extends Fragment {
                             .setDuration(1000); // Cambiar al tiempo deseado
             }
         });*/
-
         return v;
     }
 
@@ -265,4 +281,78 @@ public class CancionesFragment extends Fragment {
         alertDialog.show();
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.buscador, menu);
+
+        MenuItem item = menu.findItem(R.id.menu_buscador);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(this);
+
+        MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                adapter.setFilter((ArrayList<Cancion>) canciones);
+                return true;
+            }
+        });
+    }
+
+    /*public boolean onCreateOptionsMenu(Menu menu){
+        getActivity().getMenuInflater().inflate(R.menu.buscador, menu);
+        MenuItem item = menu.findItem(R.id.menu_buscador);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(this);
+
+        MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                adapter.setFilter((ArrayList<Cancion>) canciones);
+                return true;
+            }
+        });
+        return true;
+    }*/
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        try {
+            ArrayList<Cancion> listaFiltrada = filter((ArrayList<Cancion>) canciones, newText);
+            adapter.setFilter(listaFiltrada);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private ArrayList<Cancion> filter(ArrayList<Cancion> lista, String texto){
+        ArrayList<Cancion> listaFiltrada = new ArrayList<>();
+        try {
+            texto = texto.toLowerCase();
+            for (Cancion cancion: lista){
+                String nombreCancion = cancion.getNombre().toLowerCase();
+                if (nombreCancion.contains(texto))
+                    listaFiltrada.add(cancion);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listaFiltrada;
+    }
 }
